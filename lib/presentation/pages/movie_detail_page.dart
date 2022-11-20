@@ -1,18 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 
 class MovieDetailPage extends StatefulWidget {
-  static const ROUTE_NAME = '/detail';
+  static const ROUTE_NAME = '/detail-movie';
 
   final int id;
+
   MovieDetailPage({required this.id});
 
   @override
@@ -38,7 +39,9 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
         builder: (context, provider, child) {
           if (provider.movieState == RequestState.Loading) {
             return Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                key: Key('movie_loading'),
+              ),
             );
           } else if (provider.movieState == RequestState.Loaded) {
             final movie = provider.movie;
@@ -50,7 +53,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               ),
             );
           } else {
-            return Text(provider.message);
+            return Text(
+              provider.message,
+              key: Key('movie_error'),
+            );
           }
         },
       ),
@@ -104,6 +110,7 @@ class DetailContent extends StatelessWidget {
                             Text(
                               movie.title,
                               style: kHeading5,
+                              key: Key('movie_title'),
                             ),
                             ElevatedButton(
                               onPressed: () async {
@@ -190,11 +197,11 @@ class DetailContent extends StatelessWidget {
                                 if (data.recommendationState ==
                                     RequestState.Loading) {
                                   return Center(
-                                    child: CircularProgressIndicator(),
+                                    child: CircularProgressIndicator(key: Key('recommendation_loading'),),
                                   );
                                 } else if (data.recommendationState ==
                                     RequestState.Error) {
-                                  return Text(data.message);
+                                  return Text(data.message, key: Key('recommendation_error'));
                                 } else if (data.recommendationState ==
                                     RequestState.Loaded) {
                                   return Container(
@@ -204,6 +211,7 @@ class DetailContent extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         final movie = recommendations[index];
                                         return Padding(
+                                          key: Key('recommendation_loaded'),
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
                                             onTap: () {

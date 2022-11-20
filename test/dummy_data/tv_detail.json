@@ -1,0 +1,48 @@
+{
+  "adult": false,
+  "backdrop_path": "/pysGisnLhmjQB2CGQCAQDxBADsH.jpg",
+  "episode_run_time": [
+    42
+  ],
+  "first_air_date": "2021-10-12",
+  "genres": [
+    {
+      "id": 1,
+      "name": "Action"
+    }
+  ],
+  "homepage": "https://www.syfy.com/chucky",
+  "id": 90462,
+  "in_production": true,
+  "languages": [
+    "en"
+  ],
+  "last_air_date": "2022-11-09",
+  "name": "Chucky",
+  "number_of_episodes": 16,
+  "number_of_seasons": 2,
+  "origin_country": [
+    "US"
+  ],
+  "original_language": "en",
+  "original_name": "Chucky",
+  "overview": "After a vintage Chucky doll turns up at a suburban yard sale, an idyllic American town is thrown into chaos as a series of horrifying murders begin to expose the town’s hypocrisies and secrets. Meanwhile, the arrival of enemies — and allies — from Chucky’s past threatens to expose the truth behind the killings, as well as the demon doll’s untold origins.",
+  "popularity": 2532.47,
+  "poster_path": "/kY0BogCM8SkNJ0MNiHB3VTM86Tz.jpg",
+  "seasons": [
+    {
+      "air_date": "2021-10-12",
+      "episode_count": 8,
+      "id": 126146,
+      "name": "Season 1",
+      "overview": "",
+      "poster_path": "/iF8ai2QLNiHV4anwY1TuSGZXqfN.jpg",
+      "season_number": 1
+    }
+  ],
+  "status": "Returning Series",
+  "tagline": "A classic coming of rage story.",
+  "type": "Scripted",
+  "vote_average": 7.861,
+  "vote_count": 3463
+}
