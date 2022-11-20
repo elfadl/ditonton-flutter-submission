@@ -1,14 +1,14 @@
+import 'package:core/core.dart';
+import 'package:core/domain/entities/tv.dart';
+import 'package:core/domain/usecases/search_tv.dart';
+import 'package:core/presentation/provider/tv_search_notifier.dart';
 import 'package:dartz/dartz.dart';
-import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/domain/usecases/search_tv.dart';
-import 'package:ditonton/presentation/provider/tv_search_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'tv_search_notifier_test.mocks.dart';
+
 
 @GenerateMocks([SearchTv])
 void main() {

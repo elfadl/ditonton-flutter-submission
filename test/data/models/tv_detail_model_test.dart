@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:ditonton/data/models/genre_model.dart';
-import 'package:ditonton/data/models/season_model.dart';
-import 'package:ditonton/data/models/tv_detail_model.dart';
-import 'package:ditonton/domain/entities/genre.dart';
-import 'package:ditonton/domain/entities/season.dart';
-import 'package:ditonton/domain/entities/tv_detail.dart';
+import 'package:core/data/models/genre_model.dart';
+import 'package:core/data/models/season_model.dart';
+import 'package:core/data/models/tv_detail_model.dart';
+import 'package:core/domain/entities/genre.dart';
+import 'package:core/domain/entities/season.dart';
+import 'package:core/domain/entities/tv_detail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../json_reader.dart';
