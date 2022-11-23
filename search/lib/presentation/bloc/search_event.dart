@@ -13,6 +13,5 @@ class OnQueryChanged extends SearchEvent{
   OnQueryChanged(this.query);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [query];
 }

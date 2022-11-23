@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:core/domain/entities/movie.dart';
+import 'package:core/utils/utils.dart';
 import 'package:equatable/equatable.dart';
-import 'package:rxdart/rxdart.dart';
 
 import '../../domain/usecase/search_movies.dart';
 
@@ -23,9 +23,5 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         (data) => emit(SearchHasData(data)),
       );
     }, transformer: debounce(const Duration(milliseconds: 500)));
-  }
-
-  EventTransformer<T> debounce<T>(Duration duration){
-    return (event, mapper) => event.debounceTime(duration).flatMap(mapper);
   }
 }
