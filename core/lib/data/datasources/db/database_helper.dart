@@ -1,12 +1,15 @@
 import 'dart:async';
 
-import 'package:sqflite/sqflite.dart';
+
+import 'package:core/utils/encrypt.dart';
+import 'package:sqflite_sqlcipher/sqflite.dart';
 
 import '../../models/movie_table.dart';
 import '../../models/tv_table.dart';
 
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper;
+
   DatabaseHelper._instance() {
     _databaseHelper = this;
   }
@@ -27,7 +30,12 @@ class DatabaseHelper {
     final path = await getDatabasesPath();
     final databasePath = '$path/ditonton.db';
 
-    var db = await openDatabase(databasePath, version: 1, onCreate: _onCreate);
+    var db = await openDatabase(
+      databasePath,
+      version: 1,
+      onCreate: _onCreate,
+      password: encrypt("r4h4s14pR!b4D1"),
+    );
     return db;
   }
 
@@ -50,7 +58,8 @@ class DatabaseHelper {
     ''');
   }
 
-  Future<int> insertWatchlist(MovieTable movie, {Database? databaseTest}) async {
+  Future<int> insertWatchlist(MovieTable movie,
+      {Database? databaseTest}) async {
     final db = databaseTest ?? await database;
     return await db!.insert(_tblWatchlist, movie.toJson());
   }
@@ -60,7 +69,8 @@ class DatabaseHelper {
     return await db!.insert(_tblWatchlistTv, tv.toJson());
   }
 
-  Future<int> removeWatchlist(MovieTable movie, {Database? databaseTest}) async {
+  Future<int> removeWatchlist(MovieTable movie,
+      {Database? databaseTest}) async {
     final db = databaseTest ?? await database;
     return await db!.delete(
       _tblWatchlist,
@@ -78,7 +88,8 @@ class DatabaseHelper {
     );
   }
 
-  Future<Map<String, dynamic>?> getMovieById(int id, {Database? databaseTest}) async {
+  Future<Map<String, dynamic>?> getMovieById(int id,
+      {Database? databaseTest}) async {
     final db = databaseTest ?? await database;
     final results = await db!.query(
       _tblWatchlist,
@@ -93,7 +104,8 @@ class DatabaseHelper {
     }
   }
 
-  Future<Map<String, dynamic>?> getTvById(int id, {Database? databaseTest}) async {
+  Future<Map<String, dynamic>?> getTvById(int id,
+      {Database? databaseTest}) async {
     final db = databaseTest ?? await database;
     final results = await db!.query(
       _tblWatchlistTv,
@@ -108,14 +120,16 @@ class DatabaseHelper {
     }
   }
 
-  Future<List<Map<String, dynamic>>> getWatchlistMovies({Database? databaseTest}) async {
+  Future<List<Map<String, dynamic>>> getWatchlistMovies(
+      {Database? databaseTest}) async {
     final db = databaseTest ?? await database;
     final List<Map<String, dynamic>> results = await db!.query(_tblWatchlist);
 
     return results;
   }
 
-  Future<List<Map<String, dynamic>>> getWatchlistTv({Database? databaseTest}) async {
+  Future<List<Map<String, dynamic>>> getWatchlistTv(
+      {Database? databaseTest}) async {
     final db = databaseTest ?? await database;
     final List<Map<String, dynamic>> results = await db!.query(_tblWatchlistTv);
 
