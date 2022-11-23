@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "421990200489",
+    "project_id": "ditonton-elfastudio",
+    "storage_bucket": "ditonton-elfastudio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421990200489:android:1c4182fe98168b4686e5b8",
+        "android_client_info": {
+          "package_name": "com.dicoding.ditonton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421990200489-ei2enhfu0n5dn491bksn1c14l1tjo0ia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnUES5YbR8iCYjJB5u7n5Wdv7ldZggDNw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421990200489-ei2enhfu0n5dn491bksn1c14l1tjo0ia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
