@@ -1,5 +1,5 @@
+import 'package:core/presentation/widgets/movie_card_list.dart';
 import 'package:ditonton/main.dart' as app;
-import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
@@ -160,9 +160,8 @@ void main() {
 
       final searchInput = find.byKey(ValueKey('search_field'));
       await widgetTester.enterText(searchInput, 'spiderman');
-      await widgetTester.pump(Duration(seconds: 3));
+      await widgetTester.pump(Duration(seconds: 1));
       await widgetTester.pumpAndSettle();
-      await widgetTester.testTextInput.receiveAction(TextInputAction.search);
       await widgetTester.pumpAndSettle();
       final movieCard = find.byType(MovieCard);
 

@@ -40,6 +40,8 @@ dependencies:
     path: core
   search:
     path: search
+  movie:
+    path: movie
 
 dev_dependencies:
   mockito: ^5.0.8

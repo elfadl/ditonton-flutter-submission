@@ -23,6 +23,8 @@ dependencies:
   rxdart: ^0.27.7
   about:
     path: ../about
+  movie:
+    path: ../movie
 
 dev_dependencies:
   flutter_test:

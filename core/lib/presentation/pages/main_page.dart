@@ -1,8 +1,8 @@
 import 'package:about/about.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:movie/presentation/pages/home_movie_page.dart';
 
-import 'home_movie_page.dart';
 import 'home_tv_page.dart';
 import 'watchlist_movies_page.dart';
 import 'watchlist_tv_page.dart';
