@@ -1,4 +1,4 @@
-SF:lib/domain/usecases/get_top_rated_tv.dart
+SF:lib/domain/usecases/get_now_playing_tv.dart
 DA:10,1
 DA:12,1
 DA:13,2
@@ -331,7 +331,7 @@ DA:400,2
 LF:161
 LH:148
 end_of_record
-SF:lib/domain/usecases/get_now_playing_tv.dart
+SF:lib/domain/usecases/get_top_rated_tv.dart
 DA:10,1
 DA:12,1
 DA:13,2

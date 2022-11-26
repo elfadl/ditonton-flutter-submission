@@ -27,6 +27,8 @@ dependencies:
     path: ../movie
   tv_series:
     path: ../tv_series
+  watchlist:
+    path: ../watchlist
 
 dev_dependencies:
   flutter_test:

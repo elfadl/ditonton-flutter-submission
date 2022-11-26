@@ -14,7 +14,6 @@ dependencies:
   google_fonts: ^3.0.1
   dartz: ^0.10.0-nullsafety.2
   flutter_bloc: ^8.0.0
-  http: ^0.13.3
   core:
     path: ../core
 

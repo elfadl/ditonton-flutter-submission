@@ -1,7 +1,5 @@
 import 'package:core/core.dart';
 import 'package:core/presentation/pages/main_page.dart';
-import 'package:core/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:core/presentation/provider/watchlist_tv_notifier.dart';
 import 'package:core/utils/routes.dart';
 import 'package:ditonton/firebase_options.dart';
 import 'package:ditonton/injection.dart' as di;
@@ -30,6 +28,8 @@ import 'package:tv_series/presentation/pages/now_playing_tv_page.dart';
 import 'package:tv_series/presentation/pages/popular_tv_page.dart';
 import 'package:tv_series/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv_series/presentation/pages/tv_detail_page.dart';
+import 'package:watchlist/presentation/bloc/watchlist_movie/watchlist_movie_bloc.dart';
+import 'package:watchlist/presentation/bloc/watchlist_tv/watchlist_tv_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -81,11 +81,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (_) => di.locator<TvWatchlistBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistMovieBloc>(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistTvNotifier>(),
+        BlocProvider(
+          create: (_) => di.locator<WatchlistTvBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<SearchBloc>(),
