@@ -7,7 +7,7 @@ import 'package:core/data/repositories/movie_repository_impl.dart';
 import 'package:core/data/repositories/tv_repository_impl.dart';
 import 'package:core/domain/repositories/movie_repository.dart';
 import 'package:core/domain/repositories/tv_repository.dart';
-import 'package:http/http.dart' as http;
+import 'package:core/utils/http_ssl_pinning.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movie/domain/usecase/get_movie_detail.dart';
 import 'package:movie/domain/usecase/get_movie_recommendations.dart';
@@ -96,7 +96,7 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
 
   //bloc
   locator.registerFactory(() => SearchBloc(locator()));
@@ -117,14 +117,14 @@ void init() {
   locator.registerFactory(() => TvPopularBloc(locator()));
   locator.registerFactory(() => TvTopRatedBloc(locator()));
   locator.registerFactory(() => TvDetailBloc(
-    locator(),
-    locator(),
-  ));
+        locator(),
+        locator(),
+      ));
   locator.registerFactory(() => TvRecommendationsBloc(locator()));
   locator.registerFactory(() => TvWatchlistBloc(
-    locator(),
-    locator(),
-  ));
+        locator(),
+        locator(),
+      ));
   locator.registerFactory(() => WatchlistMovieBloc(locator()));
   locator.registerFactory(() => WatchlistTvBloc(locator()));
 }
