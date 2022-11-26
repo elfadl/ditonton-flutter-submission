@@ -13,6 +13,8 @@ import 'popular_movies_page.dart';
 import 'top_rated_movies_page.dart';
 
 class HomeMoviePage extends StatefulWidget {
+  const HomeMoviePage({super.key});
+
   @override
   _HomeMoviePageState createState() => _HomeMoviePageState();
 }

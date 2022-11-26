@@ -145,7 +145,6 @@ class _DetailContentState extends State<DetailContent> {
                               listener: (context, state) {
                                 String message = "";
 
-                                debugPrint('state = $state');
                                 message = state.message;
 
                                 if (message ==

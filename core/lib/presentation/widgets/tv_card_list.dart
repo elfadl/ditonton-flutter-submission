@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:tv_series/presentation/pages/tv_detail_page.dart';
 
 import '../../domain/entities/tv.dart';
 import '../../styles/text_styles.dart';
 import '../../utils/constants.dart';
-import '../pages/tv_detail_page.dart';
 
 class TvCard extends StatelessWidget {
   final Tv tv;

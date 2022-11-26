@@ -4,7 +4,7 @@ class Tv extends Equatable {
   String? backdropPath;
   String? firstAirDate;
   List<int>? genreIds;
-  int? id;
+  int id;
   String? name;
   List<String>? originCountry;
   String? originalLanguage;

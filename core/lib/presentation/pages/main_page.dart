@@ -2,8 +2,8 @@ import 'package:about/about.dart';
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:movie/presentation/pages/home_movie_page.dart';
+import 'package:tv_series/presentation/pages/home_tv_page.dart';
 
-import 'home_tv_page.dart';
 import 'watchlist_movies_page.dart';
 import 'watchlist_tv_page.dart';
 
@@ -48,12 +48,12 @@ class _MainPageState extends State<MainPage> {
                               ? SEARCH_MOVIE
                               : SEARCH_TV);
                     },
-                    icon: Icon(Icons.search),
+                    icon: const Icon(Icons.search),
                   )
                 ]
               : [],
           bottom: bottomNavIndex == 2
-              ? TabBar(tabs: [
+              ? const TabBar(tabs: [
                   Tab(
                     icon: Icon(Icons.movie_filter),
                     text: 'Movie',
@@ -70,19 +70,19 @@ class _MainPageState extends State<MainPage> {
   }
 
   final List<BottomNavigationBarItem> _bottomNavBarItems = [
-    BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Movie'),
-    BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'TV Series'),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(icon: Icon(Icons.movie), label: 'Movie'),
+    const BottomNavigationBarItem(icon: Icon(Icons.tv), label: 'TV Series'),
+    const BottomNavigationBarItem(
         icon: Icon(Icons.watch_later), label: 'Watchlist'),
-    BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
+    const BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
   ];
 
   Widget _listWidget(int index) {
     switch (index) {
       case 0:
-        return HomeMoviePage();
+        return const HomeMoviePage();
       case 1:
-        return HomeTvPage();
+        return const HomeTvPage();
       case 2:
         return TabBarView(children: [
           WatchlistMoviesPage(),

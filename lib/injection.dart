@@ -7,20 +7,8 @@ import 'package:core/data/repositories/movie_repository_impl.dart';
 import 'package:core/data/repositories/tv_repository_impl.dart';
 import 'package:core/domain/repositories/movie_repository.dart';
 import 'package:core/domain/repositories/tv_repository.dart';
-import 'package:core/domain/usecases/get_now_playing_tv.dart';
-import 'package:core/domain/usecases/get_popular_tv.dart';
-import 'package:core/domain/usecases/get_top_rated_tv.dart';
-import 'package:core/domain/usecases/get_tv_detail.dart';
-import 'package:core/domain/usecases/get_tv_recommendations.dart';
 import 'package:core/domain/usecases/get_watchlist_movies.dart';
 import 'package:core/domain/usecases/get_watchlist_tv.dart';
-import 'package:core/domain/usecases/get_watchlist_tv_status.dart';
-import 'package:core/domain/usecases/remove_watchlist_tv.dart';
-import 'package:core/domain/usecases/save_watchlist_tv.dart';
-import 'package:core/presentation/provider/popular_tv_notifier.dart';
-import 'package:core/presentation/provider/top_rated_tv_notifier.dart';
-import 'package:core/presentation/provider/tv_detail_notifier.dart';
-import 'package:core/presentation/provider/tv_list_notifier.dart';
 import 'package:core/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:core/presentation/provider/watchlist_tv_notifier.dart';
 import 'package:http/http.dart' as http;
@@ -40,6 +28,20 @@ import 'package:movie/presentation/bloc/movie_recommendations/movie_recommendati
 import 'package:movie/presentation/bloc/movie_top_rated/movie_top_rated_bloc.dart';
 import 'package:movie/presentation/bloc/movie_watchlist/movie_watchlist_bloc.dart';
 import 'package:search/search.dart';
+import 'package:tv_series/domain/usecases/get_now_playing_tv.dart';
+import 'package:tv_series/domain/usecases/get_popular_tv.dart';
+import 'package:tv_series/domain/usecases/get_top_rated_tv.dart';
+import 'package:tv_series/domain/usecases/get_tv_detail.dart';
+import 'package:tv_series/domain/usecases/get_tv_recommendations.dart';
+import 'package:tv_series/domain/usecases/get_watchlist_tv_status.dart';
+import 'package:tv_series/domain/usecases/remove_watchlist_tv.dart';
+import 'package:tv_series/domain/usecases/save_watchlist_tv.dart';
+import 'package:tv_series/presentation/bloc/tv_detail/tv_detail_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_now_playing/tv_now_playing_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_popular/tv_popular_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_recommendations/tv_recommendations_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_top_rated/tv_top_rated_bloc.dart';
+import 'package:tv_series/presentation/bloc/tv_watchlist/tv_watchlist_bloc.dart';
 
 final locator = GetIt.instance;
 
@@ -48,32 +50,6 @@ void init() {
   locator.registerFactory(
     () => WatchlistMovieNotifier(
       getWatchlistMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvListNotifier(
-      getNowPlayingTvs: locator(),
-      getPopularTvs: locator(),
-      getTopRatedTvs: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvDetailNotifier(
-      getTvDetail: locator(),
-      getTvRecommendations: locator(),
-      getWatchlistTvStatus: locator(),
-      saveWatchlistTv: locator(),
-      removeWatchlistTv: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => PopularTvNotifier(
-      locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TopRatedTvNotifier(
-      getTopRatedTv: locator(),
     ),
   );
   locator.registerFactory(
@@ -149,4 +125,16 @@ void init() {
         locator(),
         locator(),
       ));
+  locator.registerFactory(() => TvNowPlayingBloc(locator()));
+  locator.registerFactory(() => TvPopularBloc(locator()));
+  locator.registerFactory(() => TvTopRatedBloc(locator()));
+  locator.registerFactory(() => TvDetailBloc(
+    locator(),
+    locator(),
+  ));
+  locator.registerFactory(() => TvRecommendationsBloc(locator()));
+  locator.registerFactory(() => TvWatchlistBloc(
+    locator(),
+    locator(),
+  ));
 }
