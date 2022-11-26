@@ -231,6 +231,7 @@ class _DetailContentState extends State<DetailContent> {
                                       ),
                                       child: Stack(
                                         children: [
+                                          season.posterPath != null ?
                                           CachedNetworkImage(
                                             imageUrl:
                                                 'https://image.tmdb.org/t/p/w500${season.posterPath}',
@@ -242,11 +243,11 @@ class _DetailContentState extends State<DetailContent> {
                                             errorWidget:
                                                 (context, url, error) =>
                                                     const Icon(Icons.error),
-                                          ),
+                                          ) : const SizedBox(width: 105,child: Center(child: Text('No Poster'))),
                                           Positioned.fill(
                                             child: Container(
                                               color:
-                                                  kRichBlack.withOpacity(0.45),
+                                                  kRichBlack.withOpacity(0.35),
                                             ),
                                           ),
                                           Positioned(
