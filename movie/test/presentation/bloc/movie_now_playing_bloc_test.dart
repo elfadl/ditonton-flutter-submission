@@ -70,4 +70,12 @@ void main(){
       verify(mockGetNowPlayingMovies.execute());
     },
   );
+
+  group('test props', () {
+    test('test props in FetchNowPlayingMovies', () {
+      final event = FetchNowPlayingMovies();
+
+      expect(event.props, []);
+    });
+  });
 }

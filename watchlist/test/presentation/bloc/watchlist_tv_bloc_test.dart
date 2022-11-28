@@ -89,4 +89,12 @@ void main() {
       verify(mockGetWatchlistTv.execute());
     },
   );
+
+  group('test props', () {
+    test('test props in FetchWatchlistTv', () {
+      final event = FetchWatchlistTv();
+
+      expect(event.props, []);
+    });
+  });
 }

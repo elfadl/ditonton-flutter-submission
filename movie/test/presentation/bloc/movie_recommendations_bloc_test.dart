@@ -70,4 +70,12 @@ void main(){
       verify(mockGetMovieRecommendations.execute(tMovieModel.id));
     },
   );
+
+  group('test props', () {
+    test('test props in FetchRecommendationsMovies', () {
+      final event = FetchRecommendationsMovies(tMovieModel.id);
+
+      expect(event.props, [tMovieModel.id]);
+    });
+  });
 }

@@ -114,4 +114,48 @@ void main() {
       verify(mockRemoveWatchlist.execute(tMovieDetail));
     },
   );
+
+  blocTest<MovieWatchlistBloc, MovieWatchlistState>(
+    'Should emit WatchlistAddMovieMessage when MovieIsAddedToWatchList triggered',
+    build: () => movieWatchlistBloc,
+    act: (bloc) => bloc.add(MovieIsAddedToWatchList()),
+    expect: () => <MovieWatchlistState>[
+      WatchlistAddMovieMessage('')
+    ],
+  );
+
+  blocTest<MovieWatchlistBloc, MovieWatchlistState>(
+    'Should emit WatchlistRemoveMovieMessage when MovieIsRemovedFromWatchList triggered',
+    build: () =>movieWatchlistBloc,
+    act: (bloc) => bloc.add(MovieIsRemovedFromWatchList()),
+    expect: () => <MovieWatchlistState>[
+      WatchlistRemoveMovieMessage('')
+    ],
+  );
+
+  group('test props', () {
+    test('test props in AddMovieToWatchList', () {
+      final event = AddMovieToWatchList(tMovieDetail);
+
+      expect(event.props, [tMovieDetail]);
+    });
+
+    test('test props in RemoveMovieFromWatchList', () {
+      final event = RemoveMovieFromWatchList(tMovieDetail);
+
+      expect(event.props, [tMovieDetail]);
+    });
+
+    test('test props in MovieIsAddedToWatchList', () {
+      final event = MovieIsAddedToWatchList();
+
+      expect(event.props, []);
+    });
+
+    test('test props in MovieIsRemovedFromWatchList', () {
+      final event = MovieIsRemovedFromWatchList();
+
+      expect(event.props, []);
+    });
+  });
 }

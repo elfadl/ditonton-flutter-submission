@@ -70,4 +70,12 @@ void main(){
       verify(mockGetTvRecommendations.execute(tTvModel.id));
     },
   );
+
+  group('test props', () {
+    test('test props in FetchRecommendationsTv', () {
+      final event = FetchRecommendationsTv(1);
+
+      expect(event.props, [1]);
+    });
+  });
 }

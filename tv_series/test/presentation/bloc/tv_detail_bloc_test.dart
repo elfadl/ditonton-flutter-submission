@@ -132,4 +132,12 @@ void main() {
       verify(mockGetWatchlistTvStatus.execute(tTvDetail.id));
     },
   );
+
+  group('test props', () {
+    test('test props in FetchNowPlayingTv', () {
+      final event = FetchDetailTv(tTvDetail.id);
+
+      expect(event.props, [tTvDetail.id]);
+    });
+  });
 }

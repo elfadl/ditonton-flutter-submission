@@ -72,4 +72,12 @@ void main() {
       verify(mockSearchTv.execute(tQuery));
     },
   );
+
+  group('test props', () {
+    test('test props in OnQueryTvChanged', () {
+      final event = OnQueryTvChanged(tQuery);
+
+      expect(event.props, [tQuery]);
+    });
+  });
 }

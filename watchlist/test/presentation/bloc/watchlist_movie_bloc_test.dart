@@ -83,4 +83,12 @@ void main(){
       verify(mockGetWatchlistMovies.execute());
     },
   );
+
+  group('test props', () {
+    test('test props in FetchWatchlistMovie', () {
+      final event = FetchWatchlistMovie();
+
+      expect(event.props, []);
+    });
+  });
 }

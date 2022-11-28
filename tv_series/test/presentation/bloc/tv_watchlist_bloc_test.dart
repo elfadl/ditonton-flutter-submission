@@ -138,4 +138,47 @@ void main() {
       verify(mockRemoveWatchlistTv.execute(tTvDetail));
     },
   );
+
+  blocTest<TvWatchlistBloc, TvWatchlistState>(
+    'Should emit WatchlistAddTvMessage when TvIsAddedToWatchList triggered',
+    build: () => tvWatchlistBloc,
+    act: (bloc) => bloc.add(TvIsAddedToWatchList()),
+    expect: () => <TvWatchlistState>[
+      WatchlistAddTvMessage('')
+    ],
+  );
+
+  blocTest<TvWatchlistBloc, TvWatchlistState>(
+    'Should emit WatchlistRemoveTvMessage when TvIsRemovedFromWatchList triggered',
+    build: () =>tvWatchlistBloc,
+    act: (bloc) => bloc.add(TvIsRemovedFromWatchList()),
+    expect: () => <TvWatchlistState>[
+      WatchlistRemoveTvMessage('')
+    ],
+  );
+  
+  group('test props', () {
+    test('test props in AddTvToWatchList', () {
+      final event = AddTvToWatchList(tTvDetail);
+
+      expect(event.props, [tTvDetail]);
+    });
+    test('test props in RemoveTvFromWatchList', () {
+      final event = RemoveTvFromWatchList(tTvDetail);
+
+      expect(event.props, [tTvDetail]);
+    });
+
+    test('test props in TvIsAddedToWatchList', () {
+      final event = TvIsAddedToWatchList();
+
+      expect(event.props, []);
+    });
+
+    test('test props in TvIsRemovedFromWatchList', () {
+      final event = TvIsRemovedFromWatchList();
+
+      expect(event.props, []);
+    });
+  });
 }

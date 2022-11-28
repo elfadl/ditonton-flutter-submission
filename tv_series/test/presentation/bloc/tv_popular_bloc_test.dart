@@ -70,4 +70,12 @@ void main() {
       verify(mockGetPopularTv.execute());
     },
   );
+
+  group('test props', () {
+    test('test props in FetchPopularTv', () {
+      final event = FetchPopularTv();
+
+      expect(event.props, []);
+    });
+  });
 }

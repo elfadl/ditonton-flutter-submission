@@ -300,6 +300,7 @@ class _DetailContentState extends State<DetailContent> {
                                               'recommendation_loaded'),
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
+                                            key: ValueKey('recommendations_$index'),
                                             onTap: () {
                                               Navigator.pushReplacementNamed(
                                                 context,
@@ -332,7 +333,7 @@ class _DetailContentState extends State<DetailContent> {
                                     ),
                                   );
                                 } else {
-                                  return Container();
+                                  return Container(key: const ValueKey("recommendation_empty"),);
                                 }
                               },
                             ),

@@ -108,4 +108,12 @@ void main() {
       verify(mockGetWatchListStatus.execute(tMovieDetail.id));
     },
   );
+
+  group('test props', () {
+    test('test props in FetchDetailMovies', () {
+      final event = FetchDetailMovies(tMovieDetail.id);
+
+      expect(event.props, [tMovieDetail.id]);
+    });
+  });
 }

@@ -73,4 +73,12 @@ void main() {
       verify(mockSearchMovies.execute(tQuery));
     },
   );
+
+  group('test props', () {
+    test('test props in OnQueryChanged', () {
+      final event = OnQueryChanged(tQuery);
+
+      expect(event.props, [tQuery]);
+    });
+  });
 }

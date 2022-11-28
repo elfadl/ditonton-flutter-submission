@@ -70,4 +70,12 @@ void main(){
       verify(mockGetTopRatedTv.execute());
     },
   );
+
+  group('test props', () {
+    test('test props in FetchTopRatedTv', () {
+      final event = FetchTopRatedTv();
+
+      expect(event.props, []);
+    });
+  });
 }
