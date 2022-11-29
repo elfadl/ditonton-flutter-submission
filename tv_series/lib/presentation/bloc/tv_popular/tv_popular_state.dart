@@ -14,7 +14,7 @@ class TvPopularLoading extends TvPopularState {}
 class TvPopularError extends TvPopularState {
   final String message;
 
-  TvPopularError(this.message);
+  const TvPopularError(this.message);
 
   @override
   List<Object?> get props => [message];
@@ -23,7 +23,7 @@ class TvPopularError extends TvPopularState {
 class TvPopularHasData extends TvPopularState {
   final List<Tv> result;
 
-  TvPopularHasData(this.result);
+  const TvPopularHasData(this.result);
 
   @override
   List<Object?> get props => [result];

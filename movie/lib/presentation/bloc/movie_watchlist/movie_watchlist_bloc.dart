@@ -19,7 +19,7 @@ class MovieWatchlistBloc
   MovieWatchlistBloc(
     this._saveWatchlist,
     this._removeWatchlist,
-  ) : super(MovieWatchlistInitial("")) {
+  ) : super(const MovieWatchlistInitial("")) {
     on<AddMovieToWatchList>((event, emit) async {
       final movie = event.movieDetail;
 
@@ -27,7 +27,7 @@ class MovieWatchlistBloc
 
       result.fold(
             (failure) => emit(WatchlistAddMovieMessage(failure.message)),
-            (success) => emit(WatchlistAddMovieMessage(watchlistAddSuccessMessage)),
+            (success) => emit(const WatchlistAddMovieMessage(watchlistAddSuccessMessage)),
       );
     });
 
@@ -39,15 +39,15 @@ class MovieWatchlistBloc
       result.fold(
             (failure) => emit(WatchlistRemoveMovieMessage(failure.message)),
             (success) =>
-            emit(WatchlistRemoveMovieMessage(watchlistRemoveSuccessMessage)),
+            emit(const WatchlistRemoveMovieMessage(watchlistRemoveSuccessMessage)),
       );
     });
 
     on<MovieIsAddedToWatchList>((event, emit) async {
-      emit(WatchlistAddMovieMessage(''));
+      emit(const WatchlistAddMovieMessage(''));
     });
     on<MovieIsRemovedFromWatchList>((event, emit) async {
-      emit(WatchlistRemoveMovieMessage(''));
+      emit(const WatchlistRemoveMovieMessage(''));
     });
   }
 }

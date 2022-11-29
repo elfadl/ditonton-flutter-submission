@@ -7,12 +7,12 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../json_reader.dart';
 
 void main() {
-  final tGenreModel = GenreModel(
+  const tGenreModel = GenreModel(
     id: 1,
     name: 'Action',
   );
 
-  final tGenre = Genre(
+  const tGenre = Genre(
     id: 1,
     name: 'Action',
   );

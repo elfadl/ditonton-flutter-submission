@@ -87,7 +87,7 @@ class _MainPageState extends State<MainPage> {
           WatchlistTvPage(),
         ]);
       case 3:
-        return AboutPage();
+        return const AboutPage();
       default:
         return const Placeholder();
     }

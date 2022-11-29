@@ -74,11 +74,11 @@ void main(){
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockGetWatchlistMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return watchlistMovieBloc;
     },
     act: (bloc) => bloc.add(FetchWatchlistMovie()),
-    expect: () => <WatchlistMovieState>[WatchlistMovieLoading(), WatchlistMovieError('Server Failure')],
+    expect: () => <WatchlistMovieState>[WatchlistMovieLoading(), const WatchlistMovieError('Server Failure')],
     verify: (bloc) {
       verify(mockGetWatchlistMovies.execute());
     },

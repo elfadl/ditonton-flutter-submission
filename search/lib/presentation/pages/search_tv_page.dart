@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:core/core.dart';
 import 'package:core/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,8 @@ import 'package:search/presentation/bloc/search_tv_bloc.dart';
 
 class SearchTvPage extends StatelessWidget {
   static const ROUTE_NAME = '/search-tv';
+
+  const SearchTvPage({super.key});
 
   @override
   Widget build(BuildContext context) {

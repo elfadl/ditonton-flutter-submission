@@ -34,7 +34,7 @@ void main() {
     expect(movieDetailBloc.state, MovieDetailEmpty());
   });
 
-  final tMovieDetail = MovieDetail(
+  const tMovieDetail = MovieDetail(
     adult: false,
     backdropPath: 'backdropPath',
     genres: [Genre(id: 1, name: 'Action')],
@@ -53,7 +53,7 @@ void main() {
     'Should emit [Loading, HasData] with isAddedWatchlist false when data is gotten successfully',
     build: () {
       when(mockGetMovieDetail.execute(tMovieDetail.id))
-          .thenAnswer((_) async => Right(tMovieDetail));
+          .thenAnswer((_) async => const Right(tMovieDetail));
       when(mockGetWatchListStatus.execute(tMovieDetail.id))
           .thenAnswer((_) async => false);
       return movieDetailBloc;
@@ -61,7 +61,7 @@ void main() {
     act: (bloc) => bloc.add(FetchDetailMovies(tMovieDetail.id)),
     expect: () => <MovieDetailState>[
       MovieDetailLoading(),
-      MovieDetailHasData(tMovieDetail, false)
+      const MovieDetailHasData(tMovieDetail, false)
     ],
     verify: (bloc) {
       verify(mockGetMovieDetail.execute(tMovieDetail.id));
@@ -73,7 +73,7 @@ void main() {
     'Should emit [Loading, HasData] with isAddedWatchlist true when data is gotten successfully',
     build: () {
       when(mockGetMovieDetail.execute(tMovieDetail.id))
-          .thenAnswer((_) async => Right(tMovieDetail));
+          .thenAnswer((_) async => const Right(tMovieDetail));
       when(mockGetWatchListStatus.execute(tMovieDetail.id))
           .thenAnswer((_) async => true);
       return movieDetailBloc;
@@ -81,7 +81,7 @@ void main() {
     act: (bloc) => bloc.add(FetchDetailMovies(tMovieDetail.id)),
     expect: () => <MovieDetailState>[
       MovieDetailLoading(),
-      MovieDetailHasData(tMovieDetail, true)
+      const MovieDetailHasData(tMovieDetail, true)
     ],
     verify: (bloc) {
       verify(mockGetMovieDetail.execute(tMovieDetail.id));
@@ -93,7 +93,7 @@ void main() {
     'Should emit [Loading, Error] when get movie detail is unsuccessful',
     build: () {
       when(mockGetMovieDetail.execute(tMovieDetail.id))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       when(mockGetWatchListStatus.execute(tMovieDetail.id))
           .thenAnswer((_) async => false);
       return movieDetailBloc;
@@ -101,7 +101,7 @@ void main() {
     act: (bloc) => bloc.add(FetchDetailMovies(tMovieDetail.id)),
     expect: () => <MovieDetailState>[
       MovieDetailLoading(),
-      MovieDetailError('Server Failure')
+      const MovieDetailError('Server Failure')
     ],
     verify: (bloc) {
       verify(mockGetMovieDetail.execute(tMovieDetail.id));

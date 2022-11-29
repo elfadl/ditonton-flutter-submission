@@ -10,13 +10,13 @@ abstract class MovieWatchlistState extends Equatable {
 }
 
 class MovieWatchlistInitial extends MovieWatchlistState{
-  MovieWatchlistInitial(super.message);
+  const MovieWatchlistInitial(super.message);
 }
 
 class WatchlistAddMovieMessage extends MovieWatchlistState {
-  WatchlistAddMovieMessage(super.message);
+  const WatchlistAddMovieMessage(super.message);
 }
 
 class WatchlistRemoveMovieMessage extends MovieWatchlistState {
-  WatchlistRemoveMovieMessage(super.message);
+  const WatchlistRemoveMovieMessage(super.message);
 }

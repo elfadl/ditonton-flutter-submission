@@ -27,10 +27,10 @@ void main() {
     );
   });
 
-  final tMovieModel = MovieModel(
+  const tMovieModel = MovieModel(
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-    genreIds: const [14, 28],
+    genreIds: [14, 28],
     id: 557,
     originalTitle: 'Spider-Man',
     overview:
@@ -90,7 +90,7 @@ void main() {
       final result = await repository.getNowPlayingMovies();
       // assert
       verify(mockRemoteDataSource.getNowPlayingMovies());
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -104,7 +104,7 @@ void main() {
       // assert
       verify(mockRemoteDataSource.getNowPlayingMovies());
       expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+          equals(const Left(ConnectionFailure('Failed to connect to the network'))));
     });
 
     test(
@@ -118,7 +118,7 @@ void main() {
       // assert
       verify(mockRemoteDataSource.getNowPlayingMovies());
       expect(result,
-          equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+          equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
     });
   });
 
@@ -145,7 +145,7 @@ void main() {
       // act
       final result = await repository.getPopularMovies();
       // assert
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -158,7 +158,7 @@ void main() {
       final result = await repository.getPopularMovies();
       // assert
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result, const Left(ConnectionFailure('Failed to connect to the network')));
     });
 
     test(
@@ -172,7 +172,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getPopularMovies());
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
@@ -198,7 +198,7 @@ void main() {
       // act
       final result = await repository.getTopRatedMovies();
       // assert
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -211,7 +211,7 @@ void main() {
       final result = await repository.getTopRatedMovies();
       // assert
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result, const Left(ConnectionFailure('Failed to connect to the network')));
     });
 
     test(
@@ -225,13 +225,13 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getTopRatedMovies());
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
   group('Get Movie Detail', () {
     const tId = 1;
-    final tMovieResponse = MovieDetailResponse(
+    const tMovieResponse = MovieDetailResponse(
       adult: false,
       backdropPath: 'backdropPath',
       budget: 100,
@@ -265,7 +265,7 @@ void main() {
       final result = await repository.getMovieDetail(tId);
       // assert
       verify(mockRemoteDataSource.getMovieDetail(tId));
-      expect(result, equals(Right(testMovieDetail)));
+      expect(result, equals(const Right(testMovieDetail)));
     });
 
     test(
@@ -278,7 +278,7 @@ void main() {
       final result = await repository.getMovieDetail(tId);
       // assert
       verify(mockRemoteDataSource.getMovieDetail(tId));
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -292,7 +292,7 @@ void main() {
       // assert
       verify(mockRemoteDataSource.getMovieDetail(tId));
       expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+          equals(const Left(ConnectionFailure('Failed to connect to the network'))));
     });
 
     test(
@@ -306,7 +306,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getMovieDetail(tId));
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
@@ -338,7 +338,7 @@ void main() {
       final result = await repository.getMovieRecommendations(tId);
       // assertbuild runner
       verify(mockRemoteDataSource.getMovieRecommendations(tId));
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -352,7 +352,7 @@ void main() {
       // assert
       verify(mockRemoteDataSource.getMovieRecommendations(tId));
       expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+          equals(const Left(ConnectionFailure('Failed to connect to the network'))));
     });
 
     test(
@@ -366,7 +366,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getMovieRecommendations(tId));
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
@@ -394,7 +394,7 @@ void main() {
       // act
       final result = await repository.searchMovies(tQuery);
       // assert
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -407,7 +407,7 @@ void main() {
       final result = await repository.searchMovies(tQuery);
       // assert
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result, const Left(ConnectionFailure('Failed to connect to the network')));
     });
 
     test(
@@ -421,7 +421,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.searchMovies(tQuery));
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
@@ -443,7 +443,7 @@ void main() {
       // act
       final result = await repository.saveWatchlist(testMovieDetail);
       // assert
-      expect(result, Left(DatabaseFailure('Failed to add watchlist')));
+      expect(result, const Left(DatabaseFailure('Failed to add watchlist')));
     });
   });
 
@@ -465,7 +465,7 @@ void main() {
       // act
       final result = await repository.removeWatchlist(testMovieDetail);
       // assert
-      expect(result, Left(DatabaseFailure('Failed to remove watchlist')));
+      expect(result, const Left(DatabaseFailure('Failed to remove watchlist')));
     });
   });
 

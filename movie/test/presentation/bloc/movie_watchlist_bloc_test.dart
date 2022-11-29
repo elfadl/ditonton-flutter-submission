@@ -30,10 +30,10 @@ void main() {
   });
 
   test('initial state should be empty', () {
-    expect(movieWatchlistBloc.state, MovieWatchlistInitial(''));
+    expect(movieWatchlistBloc.state, const MovieWatchlistInitial(''));
   });
 
-  final tMovieDetail = MovieDetail(
+  const tMovieDetail = MovieDetail(
     adult: false,
     backdropPath: 'backdropPath',
     genres: [Genre(id: 1, name: 'Action')],
@@ -58,9 +58,9 @@ void main() {
           .thenAnswer((_) async => const Right(watchlistAddSuccessMessage));
       return movieWatchlistBloc;
     },
-    act: (bloc) => bloc.add(AddMovieToWatchList(tMovieDetail)),
+    act: (bloc) => bloc.add(const AddMovieToWatchList(tMovieDetail)),
     expect: () => <MovieWatchlistState>[
-      WatchlistAddMovieMessage(watchlistAddSuccessMessage)
+      const WatchlistAddMovieMessage(watchlistAddSuccessMessage)
     ],
     verify: (bloc) {
       verify(mockSaveWatchlist.execute(tMovieDetail));
@@ -71,12 +71,12 @@ void main() {
     'Should emit error message when add movie to watchlist unsuccessful',
     build: () {
       when(mockSaveWatchlist.execute(tMovieDetail))
-          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
       return movieWatchlistBloc;
     },
-    act: (bloc) => bloc.add(AddMovieToWatchList(tMovieDetail)),
+    act: (bloc) => bloc.add(const AddMovieToWatchList(tMovieDetail)),
     expect: () => <MovieWatchlistState>[
-      WatchlistAddMovieMessage('Failed')
+      const WatchlistAddMovieMessage('Failed')
     ],
     verify: (bloc) {
       verify(mockSaveWatchlist.execute(tMovieDetail));
@@ -90,9 +90,9 @@ void main() {
           .thenAnswer((_) async => const Right(watchlistRemoveSuccessMessage));
       return movieWatchlistBloc;
     },
-    act: (bloc) => bloc.add(RemoveMovieFromWatchList(tMovieDetail)),
+    act: (bloc) => bloc.add(const RemoveMovieFromWatchList(tMovieDetail)),
     expect: () => <MovieWatchlistState>[
-      WatchlistRemoveMovieMessage(watchlistRemoveSuccessMessage)
+      const WatchlistRemoveMovieMessage(watchlistRemoveSuccessMessage)
     ],
     verify: (bloc) {
       verify(mockRemoveWatchlist.execute(tMovieDetail));
@@ -103,12 +103,12 @@ void main() {
     'Should emit error message when remove movie from watchlist unsuccessful',
     build: () {
       when(mockRemoveWatchlist.execute(tMovieDetail))
-          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
       return movieWatchlistBloc;
     },
-    act: (bloc) => bloc.add(RemoveMovieFromWatchList(tMovieDetail)),
+    act: (bloc) => bloc.add(const RemoveMovieFromWatchList(tMovieDetail)),
     expect: () => <MovieWatchlistState>[
-      WatchlistRemoveMovieMessage('Failed')
+      const WatchlistRemoveMovieMessage('Failed')
     ],
     verify: (bloc) {
       verify(mockRemoveWatchlist.execute(tMovieDetail));
@@ -120,7 +120,7 @@ void main() {
     build: () => movieWatchlistBloc,
     act: (bloc) => bloc.add(MovieIsAddedToWatchList()),
     expect: () => <MovieWatchlistState>[
-      WatchlistAddMovieMessage('')
+      const WatchlistAddMovieMessage('')
     ],
   );
 
@@ -129,19 +129,19 @@ void main() {
     build: () =>movieWatchlistBloc,
     act: (bloc) => bloc.add(MovieIsRemovedFromWatchList()),
     expect: () => <MovieWatchlistState>[
-      WatchlistRemoveMovieMessage('')
+      const WatchlistRemoveMovieMessage('')
     ],
   );
 
   group('test props', () {
     test('test props in AddMovieToWatchList', () {
-      final event = AddMovieToWatchList(tMovieDetail);
+      const event = AddMovieToWatchList(tMovieDetail);
 
       expect(event.props, [tMovieDetail]);
     });
 
     test('test props in RemoveMovieFromWatchList', () {
-      final event = RemoveMovieFromWatchList(tMovieDetail);
+      const event = RemoveMovieFromWatchList(tMovieDetail);
 
       expect(event.props, [tMovieDetail]);
     });

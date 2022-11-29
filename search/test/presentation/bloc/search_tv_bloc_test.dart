@@ -27,10 +27,10 @@ void main() {
   final tTvModel = Tv(
     backdropPath: "/5kkw5RT1OjTAMh3POhjo5LdaACZ.jpg",
     firstAirDate: "2021-10-12",
-    genreIds: [80, 10765],
+    genreIds: const [80, 10765],
     id: 90462,
     name: "Chucky",
-    originCountry: ["US"],
+    originCountry: const ["US"],
     originalLanguage: "en",
     originalName: "Chucky",
     overview:
@@ -41,7 +41,7 @@ void main() {
     voteCount: 3463,
   );
   final tTvList = <Tv>[tTvModel];
-  final tQuery = "hulk";
+  const tQuery = "hulk";
 
   blocTest<SearchTvBloc, SearchTvState>(
     'Should emit [Loading, HasData] when data is gotten successfully',
@@ -50,8 +50,8 @@ void main() {
           .thenAnswer((_) async => Right(tTvList));
       return searchTvBloc;
     },
-    act: (bloc) => bloc.add(OnQueryTvChanged(tQuery)),
-    wait: Duration(milliseconds: 500),
+    act: (bloc) => bloc.add(const OnQueryTvChanged(tQuery)),
+    wait: const Duration(milliseconds: 500),
     expect: () => <SearchTvState>[SearchTvLoading(), SearchTvHasData(tTvList)],
     verify: (bloc){
       verify(mockSearchTv.execute(tQuery));
@@ -62,12 +62,12 @@ void main() {
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockSearchTv.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return searchTvBloc;
     },
-    act: (bloc) => bloc.add(OnQueryTvChanged(tQuery)),
-    wait: Duration(milliseconds: 500),
-    expect: () => <SearchTvState>[SearchTvLoading(), SearchTvError('Server Failure')],
+    act: (bloc) => bloc.add(const OnQueryTvChanged(tQuery)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => <SearchTvState>[SearchTvLoading(), const SearchTvError('Server Failure')],
     verify: (bloc) {
       verify(mockSearchTv.execute(tQuery));
     },
@@ -75,7 +75,7 @@ void main() {
 
   group('test props', () {
     test('test props in OnQueryTvChanged', () {
-      final event = OnQueryTvChanged(tQuery);
+      const event = OnQueryTvChanged(tQuery);
 
       expect(event.props, [tQuery]);
     });

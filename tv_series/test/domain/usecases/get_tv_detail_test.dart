@@ -18,21 +18,21 @@ void main(){
   });
 
   const tId = 1;
-  final testTvDetail = TvDetail(
+  const testTvDetail = TvDetail(
     adult: false,
     backdropPath: 'backdropPath',
-    episodeRunTime: const [42],
+    episodeRunTime: [42],
     firstAirDate: "2021-10-12",
     genres: [Genre(id: 1, name: 'Action')],
     homepage: "https://www.syfy.com/chucky",
     id: 90462,
     inProduction: true,
-    languages: const ["en"],
+    languages: ["en"],
     lastAirDate: "2022-11-09",
     name: "Chucky",
     numberOfEpisodes: 16,
     numberOfSeasons: 2,
-    originCountry: const ["US"],
+    originCountry: ["US"],
     originalLanguage: "en",
     originalName: "Chucky",
     overview:
@@ -58,10 +58,10 @@ void main(){
 
   test('should get tv detail from the repository', () async {
     when(mockTvRepository.getTvDetail(tId))
-        .thenAnswer((_) async => Right(testTvDetail));
+        .thenAnswer((_) async => const Right(testTvDetail));
 
     final result = await usecase.execute(tId);
 
-    expect(result, Right(testTvDetail));
+    expect(result, const Right(testTvDetail));
   });
 }

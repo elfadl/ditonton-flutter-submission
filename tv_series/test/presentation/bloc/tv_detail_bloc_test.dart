@@ -35,21 +35,21 @@ void main() {
     expect(tvDetailBloc.state, TvDetailEmpty());
   });
 
-  final tTvDetail = TvDetail(
+  const tTvDetail = TvDetail(
     adult: false,
     backdropPath: 'backdropPath',
-    episodeRunTime: const [42],
+    episodeRunTime: [42],
     firstAirDate: "2021-10-12",
     genres: [Genre(id: 1, name: 'Action')],
     homepage: "https://www.syfy.com/chucky",
     id: 90462,
     inProduction: true,
-    languages: const ["en"],
+    languages: ["en"],
     lastAirDate: "2022-11-09",
     name: "Chucky",
     numberOfEpisodes: 16,
     numberOfSeasons: 2,
-    originCountry: const ["US"],
+    originCountry: ["US"],
     originalLanguage: "en",
     originalName: "Chucky",
     overview:
@@ -77,7 +77,7 @@ void main() {
     'Should emit [Loading, HasData] with isAddedWatchlist false when data is gotten successfully',
     build: () {
       when(mockGetTvDetail.execute(tTvDetail.id))
-          .thenAnswer((_) async => Right(tTvDetail));
+          .thenAnswer((_) async => const Right(tTvDetail));
       when(mockGetWatchlistTvStatus.execute(tTvDetail.id))
           .thenAnswer((_) async => false);
       return tvDetailBloc;
@@ -85,7 +85,7 @@ void main() {
     act: (bloc) => bloc.add(FetchDetailTv(tTvDetail.id)),
     expect: () => <TvDetailState>[
       TvDetailLoading(),
-      TvDetailHasData(tTvDetail, false)
+      const TvDetailHasData(tTvDetail, false)
     ],
     verify: (bloc) {
       verify(mockGetTvDetail.execute(tTvDetail.id));
@@ -97,7 +97,7 @@ void main() {
     'Should emit [Loading, HasData] with isAddedWatchlist true when data is gotten successfully',
     build: () {
       when(mockGetTvDetail.execute(tTvDetail.id))
-          .thenAnswer((_) async => Right(tTvDetail));
+          .thenAnswer((_) async => const Right(tTvDetail));
       when(mockGetWatchlistTvStatus.execute(tTvDetail.id))
           .thenAnswer((_) async => true);
       return tvDetailBloc;
@@ -105,7 +105,7 @@ void main() {
     act: (bloc) => bloc.add(FetchDetailTv(tTvDetail.id)),
     expect: () => <TvDetailState>[
       TvDetailLoading(),
-      TvDetailHasData(tTvDetail, true)
+      const TvDetailHasData(tTvDetail, true)
     ],
     verify: (bloc) {
       verify(mockGetTvDetail.execute(tTvDetail.id));
@@ -117,7 +117,7 @@ void main() {
     'Should emit [Loading, Error] when get tv detail is unsuccessful',
     build: () {
       when(mockGetTvDetail.execute(tTvDetail.id))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       when(mockGetWatchlistTvStatus.execute(tTvDetail.id))
           .thenAnswer((_) async => false);
       return tvDetailBloc;
@@ -125,7 +125,7 @@ void main() {
     act: (bloc) => bloc.add(FetchDetailTv(tTvDetail.id)),
     expect: () => <TvDetailState>[
       TvDetailLoading(),
-      TvDetailError('Server Failure')
+      const TvDetailError('Server Failure')
     ],
     verify: (bloc) {
       verify(mockGetTvDetail.execute(tTvDetail.id));

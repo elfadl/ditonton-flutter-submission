@@ -61,11 +61,11 @@ void main(){
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockGetMovieRecommendations.execute(tMovieModel.id))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return movieRecommendationsBloc;
     },
     act: (bloc) => bloc.add(FetchRecommendationsMovies(tMovieModel.id)),
-    expect: () => <MovieRecommendationsState>[MovieRecommendationsLoading(), MovieRecommendationsError('Server Failure')],
+    expect: () => <MovieRecommendationsState>[MovieRecommendationsLoading(), const MovieRecommendationsError('Server Failure')],
     verify: (bloc) {
       verify(mockGetMovieRecommendations.execute(tMovieModel.id));
     },

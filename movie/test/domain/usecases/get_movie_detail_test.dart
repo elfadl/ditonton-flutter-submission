@@ -18,7 +18,7 @@ void main() {
 
   const tId = 1;
 
-  final testMovieDetail = MovieDetail(
+  const testMovieDetail = MovieDetail(
     adult: false,
     backdropPath: 'backdropPath',
     genres: [Genre(id: 1, name: 'Action')],
@@ -36,10 +36,10 @@ void main() {
   test('should get movie detail from the repository', () async {
     // arrange
     when(mockMovieRepository.getMovieDetail(tId))
-        .thenAnswer((_) async => Right(testMovieDetail));
+        .thenAnswer((_) async => const Right(testMovieDetail));
     // act
     final result = await usecase.execute(tId);
     // assert
-    expect(result, Right(testMovieDetail));
+    expect(result, const Right(testMovieDetail));
   });
 }

@@ -28,7 +28,7 @@ void main() {
   final tMovieModel = Movie(
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-    genreIds: [14, 28],
+    genreIds: const [14, 28],
     id: 557,
     originalTitle: 'Spider-Man',
     overview:
@@ -42,7 +42,7 @@ void main() {
     voteCount: 13507,
   );
   final tMovieList = <Movie>[tMovieModel];
-  final tQuery = "spiderman";
+  const tQuery = "spiderman";
 
   blocTest<SearchBloc, SearchState>(
     'Should emit [Loading, HasData] when data is gotten successfully',
@@ -51,8 +51,8 @@ void main() {
           .thenAnswer((_) async => Right(tMovieList));
       return searchBloc;
     },
-    act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
-    wait: Duration(milliseconds: 500),
+    act: (bloc) => bloc.add(const OnQueryChanged(tQuery)),
+    wait: const Duration(milliseconds: 500),
     expect: () => <SearchState>[SearchLoading(), SearchHasData(tMovieList)],
     verify: (bloc) {
       verify(mockSearchMovies.execute(tQuery));
@@ -63,12 +63,12 @@ void main() {
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockSearchMovies.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return searchBloc;
     },
-    act: (bloc) => bloc.add(OnQueryChanged(tQuery)),
-    wait: Duration(milliseconds: 500),
-    expect: () => <SearchState>[SearchLoading(), SearchError('Server Failure')],
+    act: (bloc) => bloc.add(const OnQueryChanged(tQuery)),
+    wait: const Duration(milliseconds: 500),
+    expect: () => <SearchState>[SearchLoading(), const SearchError('Server Failure')],
     verify: (bloc) {
       verify(mockSearchMovies.execute(tQuery));
     },
@@ -76,7 +76,7 @@ void main() {
 
   group('test props', () {
     test('test props in OnQueryChanged', () {
-      final event = OnQueryChanged(tQuery);
+      const event = OnQueryChanged(tQuery);
 
       expect(event.props, [tQuery]);
     });

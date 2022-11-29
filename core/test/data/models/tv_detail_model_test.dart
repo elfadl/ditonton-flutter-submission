@@ -11,7 +11,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../json_reader.dart';
 
 void main() {
-  final tTvDetailModel = TvDetailResponse(
+  const tTvDetailModel = TvDetailResponse(
       adult: false,
       backdropPath: '/pysGisnLhmjQB2CGQCAQDxBADsH.jpg',
       episodeRunTime: [42],
@@ -49,7 +49,7 @@ void main() {
       voteCount: 3463
   );
 
-  final tTvDetail = TvDetail(
+  const tTvDetail = TvDetail(
       adult: false,
       backdropPath: '/pysGisnLhmjQB2CGQCAQDxBADsH.jpg',
       episodeRunTime: [42],

@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/presentation/bloc/movie_now_playing/movie_now_playing_bloc.dart';
 import 'package:movie/presentation/bloc/movie_popular/movie_popular_bloc.dart';
 import 'package:movie/presentation/bloc/movie_top_rated/movie_top_rated_bloc.dart';
-import 'package:provider/provider.dart';
 
 import 'movie_detail_page.dart';
 import 'popular_movies_page.dart';

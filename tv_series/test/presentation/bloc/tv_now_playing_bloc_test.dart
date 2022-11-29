@@ -61,11 +61,11 @@ void main(){
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockGetNowPlayingTv.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return tvNowPlayingBloc;
     },
     act: (bloc) => bloc.add(FetchNowPlayingTv()),
-    expect: () => <TvNowPlayingState>[TvNowPlayingLoading(), TvNowPlayingError('Server Failure')],
+    expect: () => <TvNowPlayingState>[TvNowPlayingLoading(), const TvNowPlayingError('Server Failure')],
     verify: (bloc) {
       verify(mockGetNowPlayingTv.execute());
     },

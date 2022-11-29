@@ -8,7 +8,7 @@ import '../../json_reader.dart';
 
 void main() {
 
-  final tMovieDetail = MovieDetailResponse(
+  const tMovieDetail = MovieDetailResponse(
       adult: false,
       backdropPath: "/path.jpg",
       budget: 100,

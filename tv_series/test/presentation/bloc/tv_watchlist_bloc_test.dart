@@ -31,24 +31,24 @@ void main() {
   });
 
   test('initial state should be empty', () {
-    expect(tvWatchlistBloc.state, TvWatchlistInitial(''));
+    expect(tvWatchlistBloc.state, const TvWatchlistInitial(''));
   });
 
-  final tTvDetail = TvDetail(
+  const tTvDetail = TvDetail(
     adult: false,
     backdropPath: 'backdropPath',
-    episodeRunTime: const [42],
+    episodeRunTime: [42],
     firstAirDate: "2021-10-12",
     genres: [Genre(id: 1, name: 'Action')],
     homepage: "https://www.syfy.com/chucky",
     id: 90462,
     inProduction: true,
-    languages: const ["en"],
+    languages: ["en"],
     lastAirDate: "2022-11-09",
     name: "Chucky",
     numberOfEpisodes: 16,
     numberOfSeasons: 2,
-    originCountry: const ["US"],
+    originCountry: ["US"],
     originalLanguage: "en",
     originalName: "Chucky",
     overview:
@@ -82,9 +82,9 @@ void main() {
           .thenAnswer((_) async => const Right(watchlistAddSuccessMessage));
       return tvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(AddTvToWatchList(tTvDetail)),
+    act: (bloc) => bloc.add(const AddTvToWatchList(tTvDetail)),
     expect: () => <TvWatchlistState>[
-      WatchlistAddTvMessage(watchlistAddSuccessMessage)
+      const WatchlistAddTvMessage(watchlistAddSuccessMessage)
     ],
     verify: (bloc) {
       verify(mockSaveWatchlistTv.execute(tTvDetail));
@@ -95,12 +95,12 @@ void main() {
     'Should emit error message when add tv to watchlist unsuccessful',
     build: () {
       when(mockSaveWatchlistTv.execute(tTvDetail))
-          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
       return tvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(AddTvToWatchList(tTvDetail)),
+    act: (bloc) => bloc.add(const AddTvToWatchList(tTvDetail)),
     expect: () => <TvWatchlistState>[
-      WatchlistAddTvMessage('Failed')
+      const WatchlistAddTvMessage('Failed')
     ],
     verify: (bloc) {
       verify(mockSaveWatchlistTv.execute(tTvDetail));
@@ -114,9 +114,9 @@ void main() {
           .thenAnswer((_) async => const Right(watchlistRemoveSuccessMessage));
       return tvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(RemoveTvFromWatchList(tTvDetail)),
+    act: (bloc) => bloc.add(const RemoveTvFromWatchList(tTvDetail)),
     expect: () => <TvWatchlistState>[
-      WatchlistRemoveTvMessage(watchlistRemoveSuccessMessage)
+      const WatchlistRemoveTvMessage(watchlistRemoveSuccessMessage)
     ],
     verify: (bloc) {
       verify(mockRemoveWatchlistTv.execute(tTvDetail));
@@ -127,12 +127,12 @@ void main() {
     'Should emit error message when remove tv from watchlist unsuccessful',
     build: () {
       when(mockRemoveWatchlistTv.execute(tTvDetail))
-          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
       return tvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(RemoveTvFromWatchList(tTvDetail)),
+    act: (bloc) => bloc.add(const RemoveTvFromWatchList(tTvDetail)),
     expect: () => <TvWatchlistState>[
-      WatchlistRemoveTvMessage('Failed')
+      const WatchlistRemoveTvMessage('Failed')
     ],
     verify: (bloc) {
       verify(mockRemoveWatchlistTv.execute(tTvDetail));
@@ -144,7 +144,7 @@ void main() {
     build: () => tvWatchlistBloc,
     act: (bloc) => bloc.add(TvIsAddedToWatchList()),
     expect: () => <TvWatchlistState>[
-      WatchlistAddTvMessage('')
+      const WatchlistAddTvMessage('')
     ],
   );
 
@@ -153,18 +153,18 @@ void main() {
     build: () =>tvWatchlistBloc,
     act: (bloc) => bloc.add(TvIsRemovedFromWatchList()),
     expect: () => <TvWatchlistState>[
-      WatchlistRemoveTvMessage('')
+      const WatchlistRemoveTvMessage('')
     ],
   );
   
   group('test props', () {
     test('test props in AddTvToWatchList', () {
-      final event = AddTvToWatchList(tTvDetail);
+      const event = AddTvToWatchList(tTvDetail);
 
       expect(event.props, [tTvDetail]);
     });
     test('test props in RemoveTvFromWatchList', () {
-      final event = RemoveTvFromWatchList(tTvDetail);
+      const event = RemoveTvFromWatchList(tTvDetail);
 
       expect(event.props, [tTvDetail]);
     });

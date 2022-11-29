@@ -61,11 +61,11 @@ void main(){
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockGetTopRatedTv.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return tvTopRatedBloc;
     },
     act: (bloc) => bloc.add(FetchTopRatedTv()),
-    expect: () => <TvTopRatedState>[TvTopRatedLoading(), TvTopRatedError('Server Failure')],
+    expect: () => <TvTopRatedState>[TvTopRatedLoading(), const TvTopRatedError('Server Failure')],
     verify: (bloc) {
       verify(mockGetTopRatedTv.execute());
     },

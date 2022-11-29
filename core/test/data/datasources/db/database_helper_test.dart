@@ -13,8 +13,8 @@ void sqfliteTestInit() {
 Future main() async {
   late Database db;
   late DatabaseHelper databaseHelper;
-  const String _tblWatchlist = 'watchlist';
-  const String _tblWatchlistTv = 'watchlistTv';
+  const String tblWatchlist = 'watchlist';
+  const String tblWatchlistTv = 'watchlistTv';
 
   setUp(() async {
     sqfliteFfiInit();
@@ -22,7 +22,7 @@ Future main() async {
     databaseHelper = DatabaseHelper();
     db = await databaseFactoryFfi.openDatabase(inMemoryDatabasePath);
     await db.execute('''
-      CREATE TABLE  $_tblWatchlist (
+      CREATE TABLE  $tblWatchlist (
         id INTEGER PRIMARY KEY,
         title TEXT,
         overview TEXT,
@@ -30,7 +30,7 @@ Future main() async {
       );
     ''');
     await db.execute('''
-      CREATE TABLE  $_tblWatchlistTv (
+      CREATE TABLE  $tblWatchlistTv (
         id INTEGER PRIMARY KEY,
         name TEXT,
         overview TEXT,

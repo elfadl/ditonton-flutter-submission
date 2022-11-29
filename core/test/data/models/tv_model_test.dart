@@ -3,7 +3,7 @@ import 'package:core/domain/entities/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tTvModel = TvModel(
+  const tTvModel = TvModel(
       backdropPath: "/5kkw5RT1OjTAMh3POhjo5LdaACZ.jpg",
       firstAirDate: "2021-10-12",
       genreIds: [80, 10765],
@@ -22,10 +22,10 @@ void main() {
   final tTv = Tv(
     backdropPath: "/5kkw5RT1OjTAMh3POhjo5LdaACZ.jpg",
     firstAirDate: "2021-10-12",
-    genreIds: [80, 10765],
+    genreIds: const [80, 10765],
     id: 90462,
     name: "Chucky",
-    originCountry: ["US"],
+    originCountry: const ["US"],
     originalLanguage: "en",
     originalName: "Chucky",
     overview:

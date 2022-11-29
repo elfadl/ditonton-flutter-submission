@@ -61,11 +61,11 @@ void main(){
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockGetPopularMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return moviePopularBloc;
     },
     act: (bloc) => bloc.add(FetchPopularMovies()),
-    expect: () => <MoviePopularState>[MoviePopularLoading(), MoviePopularError('Server Failure')],
+    expect: () => <MoviePopularState>[MoviePopularLoading(), const MoviePopularError('Server Failure')],
     verify: (bloc) {
       verify(mockGetPopularMovies.execute());
     },

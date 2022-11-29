@@ -61,11 +61,11 @@ void main(){
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockGetTvRecommendations.execute(tTvModel.id))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return tvRecommendationsBloc;
     },
     act: (bloc) => bloc.add(FetchRecommendationsTv(tTvModel.id)),
-    expect: () => <TvRecommendationsState>[TvRecommendationsLoading(), TvRecommendationsError('Server Failure')],
+    expect: () => <TvRecommendationsState>[TvRecommendationsLoading(), const TvRecommendationsError('Server Failure')],
     verify: (bloc) {
       verify(mockGetTvRecommendations.execute(tTvModel.id));
     },
@@ -73,7 +73,7 @@ void main(){
 
   group('test props', () {
     test('test props in FetchRecommendationsTv', () {
-      final event = FetchRecommendationsTv(1);
+      const event = FetchRecommendationsTv(1);
 
       expect(event.props, [1]);
     });

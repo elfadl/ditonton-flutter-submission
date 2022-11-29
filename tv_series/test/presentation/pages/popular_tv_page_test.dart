@@ -26,7 +26,7 @@ void main() {
     fakeTvPopularBloc = FakeTvPopularBloc();
   });
 
-  Widget _makeTestableWidget(Widget body) {
+  Widget makeTestableWidget(Widget body) {
     return BlocProvider<TvPopularBloc>(
       create: (_) => fakeTvPopularBloc,
       child: MaterialApp(
@@ -63,7 +63,7 @@ void main() {
     final progressBarFinder = find.byType(CircularProgressIndicator);
     final centerFinder = find.byType(Center);
 
-    await tester.pumpWidget(_makeTestableWidget(const PopularTvPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularTvPage()));
 
     expect(centerFinder, findsOneWidget);
     expect(progressBarFinder, findsOneWidget);
@@ -76,7 +76,7 @@ void main() {
     final listViewFinder = find.byType(ListView);
     final tvCardFinder = find.byType(TvCard);
 
-    await tester.pumpWidget(_makeTestableWidget(const PopularTvPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularTvPage()));
 
     expect(listViewFinder, findsOneWidget);
     expect(tvCardFinder, findsOneWidget);
@@ -84,11 +84,11 @@ void main() {
 
   testWidgets('Page should display text with message when Error',
       (WidgetTester tester) async {
-    when(() => fakeTvPopularBloc.state).thenReturn(TvPopularError('Error message'));
+    when(() => fakeTvPopularBloc.state).thenReturn(const TvPopularError('Error message'));
 
     final textFinder = find.byKey(const Key('error_message'));
 
-    await tester.pumpWidget(_makeTestableWidget(const PopularTvPage()));
+    await tester.pumpWidget(makeTestableWidget(const PopularTvPage()));
 
     expect(textFinder, findsOneWidget);
   });

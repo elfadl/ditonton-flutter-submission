@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 const DETAIL_MOVIE = '/detail-movie';
 const DETAIL_TV = '/detail-tv';
 const NOW_PLAYING_TV = '/now-playing-tv';

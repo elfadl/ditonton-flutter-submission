@@ -18,7 +18,7 @@ class TvWatchlistBloc extends Bloc<TvWatchlistEvent, TvWatchlistState> {
   TvWatchlistBloc(
     this._saveWatchlistTv,
     this._removeWatchlistTv,
-  ) : super(TvWatchlistInitial("")) {
+  ) : super(const TvWatchlistInitial("")) {
     on<AddTvToWatchList>((event, emit) async {
       final tv = event.tvDetail;
 
@@ -26,7 +26,7 @@ class TvWatchlistBloc extends Bloc<TvWatchlistEvent, TvWatchlistState> {
 
       result.fold(
             (failure) => emit(WatchlistAddTvMessage(failure.message)),
-            (success) => emit(WatchlistAddTvMessage(watchlistAddSuccessMessage)),
+            (success) => emit(const WatchlistAddTvMessage(watchlistAddSuccessMessage)),
       );
     });
 
@@ -38,15 +38,15 @@ class TvWatchlistBloc extends Bloc<TvWatchlistEvent, TvWatchlistState> {
       result.fold(
             (failure) => emit(WatchlistRemoveTvMessage(failure.message)),
             (success) =>
-            emit(WatchlistRemoveTvMessage(watchlistRemoveSuccessMessage)),
+            emit(const WatchlistRemoveTvMessage(watchlistRemoveSuccessMessage)),
       );
     });
 
     on<TvIsAddedToWatchList>((event, emit) async {
-      emit(WatchlistAddTvMessage(''));
+      emit(const WatchlistAddTvMessage(''));
     });
     on<TvIsRemovedFromWatchList>((event, emit) async {
-      emit(WatchlistRemoveTvMessage(''));
+      emit(const WatchlistRemoveTvMessage(''));
     });
   }
 }

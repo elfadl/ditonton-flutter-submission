@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../json_reader.dart';
 
 void main() {
-  final tMovieTable = MovieTable(
+  const tMovieTable = MovieTable(
     id: 1,
     overview: 'overview',
     posterPath: '/path.jpg',

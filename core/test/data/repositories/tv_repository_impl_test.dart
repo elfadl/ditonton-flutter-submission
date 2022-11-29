@@ -28,13 +28,13 @@ void main() {
     );
   });
 
-  final tTvModel = TvModel(
+  const tTvModel = TvModel(
     backdropPath: "/5kkw5RT1OjTAMh3POhjo5LdaACZ.jpg",
     firstAirDate: "2021-10-12",
-    genreIds: const [80, 10765],
+    genreIds: [80, 10765],
     id: 90462,
     name: "Chucky",
-    originCountry: const ["US"],
+    originCountry: ["US"],
     originalLanguage: "en",
     originalName: "Chucky",
     overview:
@@ -88,7 +88,7 @@ void main() {
       final result = await repository.getNowPlayingTvs();
 
       verify(mockRemoteDataSource.getNowPlayingTv());
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -102,7 +102,7 @@ void main() {
       // assert
       verify(mockRemoteDataSource.getNowPlayingTv());
       expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+          equals(const Left(ConnectionFailure('Failed to connect to the network'))));
     });
 
     test(
@@ -116,7 +116,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getNowPlayingTv());
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
@@ -138,7 +138,7 @@ void main() {
 
       final result = await repository.getPopularTvs();
 
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -150,7 +150,7 @@ void main() {
       final result = await repository.getPopularTvs();
 
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result, const Left(ConnectionFailure('Failed to connect to the network')));
     });
 
     test(
@@ -164,7 +164,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getTvPopular());
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
@@ -186,7 +186,7 @@ void main() {
 
       final result = await repository.getTopRatedTvs();
 
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -198,7 +198,7 @@ void main() {
       final result = await repository.getTopRatedTvs();
 
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result, const Left(ConnectionFailure('Failed to connect to the network')));
     });
 
     test(
@@ -212,27 +212,27 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getTvTopRated());
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
   group('Get Tv Detail', () {
     const tId = 1;
-    final tTvResponse = TvDetailResponse(
+    const tTvResponse = TvDetailResponse(
         adult: false,
         backdropPath: 'backdropPath',
-        episodeRunTime: const [42],
+        episodeRunTime: [42],
         firstAirDate: "2021-10-12",
         genres: [GenreModel(id: 1, name: 'Action')],
         homepage: "https://www.syfy.com/chucky",
         id: 90462,
         inProduction: true,
-        languages: const ["en"],
+        languages: ["en"],
         lastAirDate: "2022-11-09",
         name: "Chucky",
         numberOfEpisodes: 16,
         numberOfSeasons: 2,
-        originCountry: const ["US"],
+        originCountry: ["US"],
         originalLanguage: "en",
         originalName: "Chucky",
         overview:
@@ -264,7 +264,7 @@ void main() {
       final result = await repository.getTvDetail(tId);
 
       verify(mockRemoteDataSource.getTvDetail(tId));
-      expect(result, equals(Right(testTvDetail)));
+      expect(result, equals(const Right(testTvDetail)));
     });
 
     test(
@@ -275,7 +275,7 @@ void main() {
       final result = await repository.getTvDetail(tId);
 
       verify(mockRemoteDataSource.getTvDetail(tId));
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -289,7 +289,7 @@ void main() {
       // assert
       verify(mockRemoteDataSource.getTvDetail(tId));
       expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+          equals(const Left(ConnectionFailure('Failed to connect to the network'))));
     });
 
     test(
@@ -303,7 +303,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getTvDetail(tId));
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
@@ -332,7 +332,7 @@ void main() {
       final result = await repository.getTvRecommendations(tId);
 
       verify(mockRemoteDataSource.getTvRecommendations(tId));
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -345,7 +345,7 @@ void main() {
 
       verify(mockRemoteDataSource.getTvRecommendations(tId));
       expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+          equals(const Left(ConnectionFailure('Failed to connect to the network'))));
     });
 
     test(
@@ -359,7 +359,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.getTvRecommendations(tId));
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 
@@ -402,7 +402,7 @@ void main() {
 
       final result = await repository.removeWatchlist(testTvDetail);
 
-      expect(result, Left(DatabaseFailure('Failed to remove watchlist')));
+      expect(result, const Left(DatabaseFailure('Failed to remove watchlist')));
     });
   });
 
@@ -422,7 +422,7 @@ void main() {
 
       final result = await repository.saveWatchlist(testTvDetail);
 
-      expect(result, Left(DatabaseFailure('Failed to add watchlist')));
+      expect(result, const Left(DatabaseFailure('Failed to add watchlist')));
     });
   });
 
@@ -446,7 +446,7 @@ void main() {
 
       final result = await repository.searchTvs(tQuery);
 
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -458,7 +458,7 @@ void main() {
       final result = await repository.searchTvs(tQuery);
 
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result, const Left(ConnectionFailure('Failed to connect to the network')));
     });
 
     test(
@@ -472,7 +472,7 @@ void main() {
           // assert
           verify(mockRemoteDataSource.searchTv(tQuery));
           expect(result,
-              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+              equals(const Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
         });
   });
 }

@@ -10,7 +10,7 @@ abstract class TvWatchlistEvent extends Equatable {
 class AddTvToWatchList extends TvWatchlistEvent{
   final TvDetail tvDetail;
 
-  AddTvToWatchList(this.tvDetail);
+  const AddTvToWatchList(this.tvDetail);
 
   @override
   List<Object?> get props => [tvDetail];
@@ -19,7 +19,7 @@ class AddTvToWatchList extends TvWatchlistEvent{
 class RemoveTvFromWatchList extends TvWatchlistEvent{
   final TvDetail tvDetail;
 
-  RemoveTvFromWatchList(this.tvDetail);
+  const RemoveTvFromWatchList(this.tvDetail);
 
   @override
   List<Object?> get props => [tvDetail];

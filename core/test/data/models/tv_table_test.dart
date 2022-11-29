@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../json_reader.dart';
 
 void main() {
-  final tTvTable = TvTable(
+  const tTvTable = TvTable(
     id: 1,
     overview: 'overview',
     posterPath: '/path.jpg',

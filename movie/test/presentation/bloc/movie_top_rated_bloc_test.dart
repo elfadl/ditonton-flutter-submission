@@ -61,11 +61,11 @@ void main(){
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockGetTopRatedMovies.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return movieTopRatedBloc;
     },
     act: (bloc) => bloc.add(FetchTopRatedMovies()),
-    expect: () => <MovieTopRatedState>[MovieTopRatedLoading(), MovieTopRatedError('Server Failure')],
+    expect: () => <MovieTopRatedState>[MovieTopRatedLoading(), const MovieTopRatedError('Server Failure')],
     verify: (bloc) {
       verify(mockGetTopRatedMovies.execute());
     },

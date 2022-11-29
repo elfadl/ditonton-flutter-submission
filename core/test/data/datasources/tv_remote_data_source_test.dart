@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -57,7 +59,7 @@ void main() {
   });
 
   group('get tv detail', () {
-    final tId = 90462;
+    const tId = 90462;
     final tTvDetail = TvDetailResponse.fromJson(
         json.decode(readJson('dummy_data/tv_detail.json')));
 
@@ -90,7 +92,7 @@ void main() {
     final tTvList = TvResponse.fromJson(
             json.decode(readJson('dummy_data/tv_recommendations.json')))
         .tvList;
-    final tId = 99966;
+    const tId = 99966;
 
     test('should return list of Tv Model when the response code is 200',
         () async {
@@ -184,7 +186,7 @@ void main() {
     final tSearchResult = TvResponse.fromJson(
             json.decode(readJson('dummy_data/search_hulk_tv.json')))
         .tvList;
-    final tQuery = 'hulk';
+    const tQuery = 'hulk';
 
     test('should return list of tvs when response is success (200)', () async {
       when(mockHttpClient

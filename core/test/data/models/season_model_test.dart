@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../json_reader.dart';
 
 void main() {
-  final tSeasonModel = SeasonModel(
+  const tSeasonModel = SeasonModel(
     airDate: "2021-10-12",
     episodeCount: 8,
     id: 126146,
@@ -17,7 +17,7 @@ void main() {
     seasonNumber: 1,
   );
 
-  final tSeason = Season(
+  const tSeason = Season(
     airDate: "2021-10-12",
     episodeCount: 8,
     id: 126146,

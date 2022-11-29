@@ -10,13 +10,13 @@ abstract class TvWatchlistState extends Equatable {
 }
 
 class TvWatchlistInitial extends TvWatchlistState{
-  TvWatchlistInitial(super.message);
+  const TvWatchlistInitial(super.message);
 }
 
 class WatchlistAddTvMessage extends TvWatchlistState {
-  WatchlistAddTvMessage(super.message);
+  const WatchlistAddTvMessage(super.message);
 }
 
 class WatchlistRemoveTvMessage extends TvWatchlistState {
-  WatchlistRemoveTvMessage(super.message);
+  const WatchlistRemoveTvMessage(super.message);
 }

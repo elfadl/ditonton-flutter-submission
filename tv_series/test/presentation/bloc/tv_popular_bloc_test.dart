@@ -60,12 +60,12 @@ void main() {
     'Should emit [Loading, Error] when get search is unsuccessful',
     build: () {
       when(mockGetPopularTv.execute())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       return tvPopularBloc;
     },
     act: (bloc) => bloc.add(FetchPopularTv()),
     expect: () =>
-        <TvPopularState>[TvPopularLoading(), TvPopularError('Server Failure')],
+        <TvPopularState>[TvPopularLoading(), const TvPopularError('Server Failure')],
     verify: (bloc) {
       verify(mockGetPopularTv.execute());
     },
