@@ -1,4 +1,4 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, library_private_types_in_public_api, must_be_immutable
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
