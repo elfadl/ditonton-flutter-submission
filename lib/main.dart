@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:core/presentation/pages/main_page.dart';
+import 'package:core/utils/http_ssl_pinning.dart';
 import 'package:core/utils/routes.dart';
 import 'package:ditonton/firebase_options.dart';
 import 'package:ditonton/injection.dart' as di;
@@ -36,6 +37,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await HttpSSLPinning.init();
   di.init();
   runApp(MyApp());
 }

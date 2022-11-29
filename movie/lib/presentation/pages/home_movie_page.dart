@@ -52,11 +52,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                 final result = state.result;
                 return MovieList(result, 'now_playing_movie');
               } else if (state is MovieNowPlayingError) {
-                return Expanded(
-                  child: Center(
-                    child: Text(state.message),
-                  ),
-                );
+                return Text(state.message);
               } else {
                 return const Text('Failed');
               }
@@ -75,11 +71,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               } else if (state is MoviePopularHasData) {
                 return MovieList(state.result, 'popular_movie');
               } else if (state is MoviePopularError) {
-                return Expanded(
-                  child: Center(
-                    child: Text(state.message),
-                  ),
-                );
+                return Text(state.message);
               } else {
                 return const Text('Failed');
               }
@@ -98,11 +90,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               } else if (state is MovieTopRatedHasData) {
                 return MovieList(state.result, 'top_rated_movie');
               } else if (state is MovieTopRatedError) {
-                return Expanded(
-                  child: Center(
-                    child: Text(state.message),
-                  ),
-                );
+                return Text(state.message);
               } else {
                 return const Text('Failed');
               }

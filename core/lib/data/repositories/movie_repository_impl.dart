@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../domain/entities/movie.dart';
 import '../../domain/entities/movie_detail.dart';
@@ -29,6 +30,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Failed to verify SSL Certificate: ${e.message}'));
     }
   }
 
@@ -41,6 +44,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Failed to verify SSL Certificate: ${e.message}'));
     }
   }
 
@@ -53,6 +58,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Failed to verify SSL Certificate: ${e.message}'));
     }
   }
 
@@ -65,6 +72,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Failed to verify SSL Certificate: ${e.message}'));
     }
   }
 
@@ -77,6 +86,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Failed to verify SSL Certificate: ${e.message}'));
     }
   }
 
@@ -89,6 +100,8 @@ class MovieRepositoryImpl implements MovieRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException catch (e) {
+      return Left(SSLFailure('Failed to verify SSL Certificate: ${e.message}'));
     }
   }
 

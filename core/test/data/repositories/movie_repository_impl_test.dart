@@ -30,7 +30,7 @@ void main() {
   final tMovieModel = MovieModel(
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-    genreIds: [14, 28],
+    genreIds: const [14, 28],
     id: 557,
     originalTitle: 'Spider-Man',
     overview:
@@ -47,7 +47,7 @@ void main() {
   final tMovie = Movie(
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-    genreIds: [14, 28],
+    genreIds: const [14, 28],
     id: 557,
     originalTitle: 'Spider-Man',
     overview:
@@ -98,13 +98,27 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getNowPlayingMovies())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getNowPlayingMovies();
       // assert
       verify(mockRemoteDataSource.getNowPlayingMovies());
       expect(result,
           equals(Left(ConnectionFailure('Failed to connect to the network'))));
+    });
+
+    test(
+        'should return ssl failure when failed to verify ssl',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getNowPlayingMovies())
+          .thenThrow(const TlsException('Failed to verify ssl'));
+      // act
+      final result = await repository.getNowPlayingMovies();
+      // assert
+      verify(mockRemoteDataSource.getNowPlayingMovies());
+      expect(result,
+          equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
     });
   });
 
@@ -139,13 +153,27 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getPopularMovies())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getPopularMovies();
       // assert
       expect(
           result, Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+        'should return ssl failure when failed to verify ssl',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getPopularMovies())
+              .thenThrow(const TlsException('Failed to verify ssl'));
+          // act
+          final result = await repository.getPopularMovies();
+          // assert
+          verify(mockRemoteDataSource.getPopularMovies());
+          expect(result,
+              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+        });
   });
 
   group('Top Rated Movies', () {
@@ -178,17 +206,31 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getTopRatedMovies())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getTopRatedMovies();
       // assert
       expect(
           result, Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+        'should return ssl failure when failed to verify ssl',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getTopRatedMovies())
+              .thenThrow(const TlsException('Failed to verify ssl'));
+          // act
+          final result = await repository.getTopRatedMovies();
+          // assert
+          verify(mockRemoteDataSource.getTopRatedMovies());
+          expect(result,
+              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+        });
   });
 
   group('Get Movie Detail', () {
-    final tId = 1;
+    const tId = 1;
     final tMovieResponse = MovieDetailResponse(
       adult: false,
       backdropPath: 'backdropPath',
@@ -244,7 +286,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getMovieDetail(tId))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getMovieDetail(tId);
       // assert
@@ -252,11 +294,25 @@ void main() {
       expect(result,
           equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test(
+        'should return ssl failure when failed to verify ssl',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getMovieDetail(tId))
+              .thenThrow(const TlsException('Failed to verify ssl'));
+          // act
+          final result = await repository.getMovieDetail(tId);
+          // assert
+          verify(mockRemoteDataSource.getMovieDetail(tId));
+          expect(result,
+              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+        });
   });
 
   group('Get Movie Recommendations', () {
     final tMovieList = <MovieModel>[];
-    final tId = 1;
+    const tId = 1;
 
     test('should return data (movie list) when the call is successful',
         () async {
@@ -290,7 +346,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getMovieRecommendations(tId))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getMovieRecommendations(tId);
       // assert
@@ -298,10 +354,24 @@ void main() {
       expect(result,
           equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });
+
+    test(
+        'should return ssl failure when failed to verify ssl',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.getMovieRecommendations(tId))
+              .thenThrow(const TlsException('Failed to verify ssl'));
+          // act
+          final result = await repository.getMovieRecommendations(tId);
+          // assert
+          verify(mockRemoteDataSource.getMovieRecommendations(tId));
+          expect(result,
+              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+        });
   });
 
   group('Seach Movies', () {
-    final tQuery = 'spiderman';
+    const tQuery = 'spiderman';
 
     test('should return movie list when call to data source is successful',
         () async {
@@ -332,13 +402,27 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.searchMovies(tQuery))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
       // act
       final result = await repository.searchMovies(tQuery);
       // assert
       expect(
           result, Left(ConnectionFailure('Failed to connect to the network')));
     });
+
+    test(
+        'should return ssl failure when failed to verify ssl',
+            () async {
+          // arrange
+          when(mockRemoteDataSource.searchMovies(tQuery))
+              .thenThrow(const TlsException('Failed to verify ssl'));
+          // act
+          final result = await repository.searchMovies(tQuery);
+          // assert
+          verify(mockRemoteDataSource.searchMovies(tQuery));
+          expect(result,
+              equals(Left(SSLFailure('Failed to verify SSL Certificate: Failed to verify ssl'))));
+        });
   });
 
   group('save watchlist', () {
@@ -349,7 +433,7 @@ void main() {
       // act
       final result = await repository.saveWatchlist(testMovieDetail);
       // assert
-      expect(result, Right('Added to Watchlist'));
+      expect(result, const Right('Added to Watchlist'));
     });
 
     test('should return DatabaseFailure when saving unsuccessful', () async {
@@ -371,7 +455,7 @@ void main() {
       // act
       final result = await repository.removeWatchlist(testMovieDetail);
       // assert
-      expect(result, Right('Removed from watchlist'));
+      expect(result, const Right('Removed from watchlist'));
     });
 
     test('should return DatabaseFailure when remove unsuccessful', () async {
@@ -388,7 +472,7 @@ void main() {
   group('get watchlist status', () {
     test('should return watch status whether data is found', () async {
       // arrange
-      final tId = 1;
+      const tId = 1;
       when(mockLocalDataSource.getMovieById(tId)).thenAnswer((_) async => null);
       // act
       final result = await repository.isAddedToWatchlist(tId);
